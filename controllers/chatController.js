@@ -24,7 +24,7 @@ export const createChat = async (req, res) => {
   });
   console.log(isExistBefore);
 
-  if (isExistBefore !== null || isExistBefore2 !== nul)
+  if (isExistBefore !== null || isExistBefore2 !== null)
     return res.status(200).json(isExistBefore);
 
   const newChat = new Chat({ users });
