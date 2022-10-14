@@ -7,8 +7,6 @@ import chatRoutes from "./routes/chatRoutes.js";
 import messageRoutes from "./routes/messageRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 
-const port = 5000;
-
 dotenv.config();
 const app = express();
 const router = express.Router();
@@ -24,7 +22,7 @@ app.use("/user", userRoutes);
 mongoose
   .connect(process.env.CONNECTION_URL)
   .then(() =>
-    app.listen(port, () => {
+    app.listen(process.env.PORT || 5000, () => {
       console.log(`Example app listening on port http://localhost:${port}`);
     })
   )
