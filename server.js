@@ -21,7 +21,9 @@ app.use("/message", messageRoutes);
 app.use("/user", userRoutes);
 
 mongoose
-  .connect(process.env.CONNECTION_URL)
+  .connect(
+    "mongodb+srv://sahil:sahil@cluster0.bxu1dtp.mongodb.net/?retryWrites=true&w=majority"
+  )
   .then(() =>
     app.listen(process.env.PORT || 5000, () => {
       console.log(
