@@ -3,6 +3,7 @@ import User from "../models/userModel.js";
 
 export const createChat = async (req, res) => {
   const { currentUserId, otherUserId } = req.body;
+  console.log(req.body);
   const users = [currentUserId, otherUserId];
   const reverseUsers = [currentUserId, otherUserId];
 
@@ -25,7 +26,7 @@ export const createChat = async (req, res) => {
     });
     console.log(isExistBefore);
 
-    if (isExistBefore !== null || isExistBefore2 !== null)
+    if (isExistBefore !== null && isExistBefore2 !== null)
       return res.status(200).json(isExistBefore);
 
     const newChat = new Chat({ users });
