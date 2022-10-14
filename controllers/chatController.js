@@ -6,15 +6,15 @@ export const createChat = async (req, res) => {
   const users = [currentUserId, otherUserId];
 
   try {
-    // const isCurrentUserIdCorrect = await User.find({
-    //   user: currentUserId,
-    // }).count();
-    // const isOtherUserIdCorrect = await User.find({ user: otherUserId }).count();
+    const isCurrentUserIdCorrect = await User.find({
+      user: currentUserId,
+    }).count();
+    const isOtherUserIdCorrect = await User.find({ user: otherUserId }).count();
 
-    // if (isCurrentUserIdCorrect < 1)
-    //   return res.status(200).send("current user id incorrect 1");
-    // if (isOtherUserIdCorrect < 1)
-    //   return res.status(200).send("other user id incorrect 2");
+    if (isCurrentUserIdCorrect < 1)
+      return res.status(200).send("current user id incorrect 1");
+    if (isOtherUserIdCorrect < 1)
+      return res.status(200).send("other user id incorrect 2");
 
     var isExistBefore = await Chat.find({
       $and: [
