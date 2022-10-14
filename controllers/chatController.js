@@ -4,6 +4,7 @@ import User from "../models/userModel.js";
 export const createChat = async (req, res) => {
   const { currentUserId, otherUserId } = req.body;
   const users = [currentUserId, otherUserId];
+  const reverseUsers = [currentUserId, otherUserId];
 
   const isCurrentUserIdCorrect = await User.find({
     user: currentUserId,
@@ -18,9 +19,13 @@ export const createChat = async (req, res) => {
   const isExistBefore = await Chat.findOne({
     users,
   });
+  const isExistBefore2 = await Chat.findOne({
+    reverseUsers,
+  });
   console.log(isExistBefore);
 
-  if (isExistBefore !== null) return res.status(200).json(isExistBefore);
+  if (isExistBefore !== null || isExistBefore2 !== nul)
+    return res.status(200).json(isExistBefore);
 
   const newChat = new Chat({ users });
   try {

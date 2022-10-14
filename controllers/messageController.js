@@ -16,6 +16,7 @@ export const getAllMsgInChat = async (req, res) => {
   console.log(chatId);
   try {
     const messages = await Message.find({ chat: chatId });
+    console.log(messages);
     res.status(200).json(messages);
   } catch (error) {
     console.log(error);
