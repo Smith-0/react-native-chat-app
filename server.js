@@ -8,6 +8,7 @@ import messageRoutes from "./routes/messageRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 
 dotenv.config();
+console.log(process.env.CONNECTION_URL);
 const app = express();
 const router = express.Router();
 
