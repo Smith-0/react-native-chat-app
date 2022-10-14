@@ -6,29 +6,29 @@ export const createChat = async (req, res) => {
   const users = [currentUserId, otherUserId];
   const reverseUsers = [currentUserId, otherUserId];
 
-  const isCurrentUserIdCorrect = await User.find({
-    user: currentUserId,
-  }).count();
-  const isOtherUserIdCorrect = await User.find({ user: otherUserId }).count();
-
-  if (isCurrentUserIdCorrect < 1)
-    return res.status(200).send("current user id incorrect 1");
-  if (isOtherUserIdCorrect < 1)
-    return res.status(200).send("other user id incorrect 2");
-
-  const isExistBefore = await Chat.findOne({
-    users,
-  });
-  const isExistBefore2 = await Chat.findOne({
-    reverseUsers,
-  });
-  console.log(isExistBefore);
-
-  if (isExistBefore !== null || isExistBefore2 !== null)
-    return res.status(200).json(isExistBefore);
-
-  const newChat = new Chat({ users });
   try {
+    const isCurrentUserIdCorrect = await User.find({
+      user: currentUserId,
+    }).count();
+    const isOtherUserIdCorrect = await User.find({ user: otherUserId }).count();
+
+    if (isCurrentUserIdCorrect < 1)
+      return res.status(200).send("current user id incorrect 1");
+    if (isOtherUserIdCorrect < 1)
+      return res.status(200).send("other user id incorrect 2");
+
+    const isExistBefore = await Chat.findOne({
+      users,
+    });
+    const isExistBefore2 = await Chat.findOne({
+      reverseUsers,
+    });
+    console.log(isExistBefore);
+
+    if (isExistBefore !== null || isExistBefore2 !== null)
+      return res.status(200).json(isExistBefore);
+
+    const newChat = new Chat({ users });
     await newChat.save();
     console.log(newChat);
     res.status(201).json(newChat);
