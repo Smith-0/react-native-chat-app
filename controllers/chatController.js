@@ -18,8 +18,8 @@ export const createChat = async (req, res) => {
 
     var isExistBefore = await Chat.find({
       $and: [
-        { users: { $elemMatch: { $eq: "63491222d73c780000bfa9f7" } } },
-        { users: { $elemMatch: { $eq: "634929feae8a880000c41437" } } },
+        { users: { $elemMatch: { $eq: currentUserId } } },
+        { users: { $elemMatch: { $eq: otherUserId } } },
       ],
     });
 
