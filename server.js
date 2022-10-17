@@ -43,9 +43,9 @@ io.on("connection", (socket) => {
     console.log("User joined room : " + room);
   });
 
-  socket.on("new message", ({ newRecivedMessage, receiver }) => {
+  socket.on("new message", ({ newRecivedMessage, chat }) => {
     console.log("new message");
-    socket.in(receiver).emit("message recived", newRecivedMessage);
+    io.to(chat).emit("message recived", newRecivedMessage);
   });
 
   socket.off("setup", () => {
