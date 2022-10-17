@@ -45,7 +45,7 @@ io.on("connection", (socket) => {
 
   socket.on("new message", ({ newRecivedMessage, receiver }) => {
     console.log("new message");
-    socket.emit("message recived", newRecivedMessage);
+    socket.in(receiver).emit("message recived", newRecivedMessage);
   });
 
   socket.off("setup", () => {
