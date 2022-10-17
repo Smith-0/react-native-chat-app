@@ -2,7 +2,7 @@ import Message from "../models/messageModel.js";
 
 export const sendMessage = async (req, res) => {
   const newMessage = new Message(req.body);
-  console.log(newMessage);
+  // console.log(newMessage);
   try {
     await newMessage.save();
     res.status(201).json(newMessage);
@@ -13,10 +13,9 @@ export const sendMessage = async (req, res) => {
 
 export const getAllMsgInChat = async (req, res) => {
   const chatId = req.params.chatId;
-  console.log(chatId);
   try {
     const messages = await Message.find({ chat: chatId });
-    console.log(messages);
+    // console.log(messages);
     res.status(200).json(messages);
   } catch (error) {
     console.log(error);

@@ -16,7 +16,7 @@ export const createChat = async (req, res) => {
     if (isOtherUserIdCorrect < 1)
       return res.status(200).send("other user id incorrect 2");
 
-    var isExistBefore = await Chat.find({
+    var isExistBefore = await Chat.findOne({
       $and: [
         { users: { $elemMatch: { $eq: currentUserId } } },
         { users: { $elemMatch: { $eq: otherUserId } } },
@@ -26,7 +26,6 @@ export const createChat = async (req, res) => {
     if (isExistBefore) {
       return res.status(200).json(isExistBefore);
     }
-
     const newChat = new Chat({ users });
     await newChat.save();
     console.log(newChat);
